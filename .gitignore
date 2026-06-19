@@ -8,4 +8,4 @@ frontend/node_modules/
 frontend/dist/
 
 # Sistema
-.DS_Store
+.DS_Storebackend/.env
