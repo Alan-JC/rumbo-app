@@ -1,184 +1,224 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
+/* Reset general */
+* {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+/* Variables de color — inspiradas en el Tec de Monterrey */
+:root {
+  --azul: #0033A0;        /* Azul institucional */
+  --azul-oscuro: #002280; /* Azul para hover */
+  --azul-claro: #E8EDF8;  /* Fondo suave azul */
+  --blanco: #ffffff;
+  --gris-texto: #444444;
+  --gris-borde: #d0d7e8;
+  --gris-fondo: #f4f6fb;
 }
 
-.ticks {
-  position: relative;
+/* Fondo y tipografía base */
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--gris-fondo);
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* Encabezado */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Logo */
+.header h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--azul);
+  letter-spacing: -1px;
+  margin-bottom: 0.4rem;
+}
+
+/* Descripción */
+.header p {
+  color: var(--gris-texto);
+  font-size: 1rem;
+}
+
+/* Línea decorativa debajo del header */
+.header::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 4px;
+  background: var(--azul);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Tarjeta del formulario */
+.form {
+  background: var(--blanco);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 24px rgba(0, 51, 160, 0.08);
+  border-top: 4px solid var(--azul);
+}
+
+/* Cada campo */
+.field {
+  margin-bottom: 1.4rem;
+}
+
+/* Etiqueta */
+.field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--azul);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Inputs y selects */
+.field input,
+.field select {
   width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fafcff;
+  transition: border-color 0.2s;
+  outline: none;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+/* Foco en inputs */
+.field input:focus,
+.field select:focus {
+  border-color: var(--azul);
+  background: var(--blanco);
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+/* Chips de intereses */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Chip individual */
+.chip {
+  border: 1.5px solid var(--gris-borde);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--gris-texto);
+  background: transparent;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+/* Chip seleccionado */
+.chip.sel {
+  background: var(--azul-claro);
+  color: var(--azul);
+  border-color: var(--azul);
+  font-weight: 600;
+}
+
+.chip:hover {
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+/* Botón principal */
+.btn-primary {
+  width: 100%;
+  padding: 0.9rem;
+  background: var(--azul);
+  color: var(--blanco);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--azul-oscuro);
+}
+
+.btn-primary:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+/* Tarjeta de resultado */
+.resultado {
+  background: var(--blanco);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 24px rgba(0, 51, 160, 0.08);
+  border-top: 4px solid var(--azul);
+}
+
+.resultado h2 {
+  color: var(--azul);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Contenido de la ruta generada por la IA */
+.ruta-contenido {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #333;
+  white-space: pre-wrap;
+  margin-bottom: 1.5rem;
+}
+
+/* Botón secundario para volver */
+.btn-secondary {
+  background: transparent;
+  color: var(--azul);
+  border: 2px solid var(--azul);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--azul-claro);
+}
+
+/* Mensaje de error */
+.error {
+  color: #cc0000;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #fff0f0;
+  border-radius: 8px;
+  border-left: 3px solid #cc0000;
 }

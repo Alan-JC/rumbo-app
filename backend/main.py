@@ -1,24 +1,28 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import google.generativeai as genai
+from groq import Groq
 from dotenv import load_dotenv
 import os
 
+# Carga las variables de entorno del archivo .env
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-1.5-flash")
+# Inicializa el cliente de Groq con la API key
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 app = FastAPI()
 
+# Permite conexiones desde el frontend en desarrollo
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Modelo de datos que recibimos del frontend
 class PerfilUsuario(BaseModel):
     edad: int
     nivel_educativo: str
@@ -52,5 +56,10 @@ def generar_ruta(perfil: PerfilUsuario):
     Usa secciones claras con emojis.
     """
 
-    respuesta = model.generate_content(prompt)
-    return {"ruta": respuesta.text}
+    # Llama a la API de Groq y obtiene la respuesta
+    respuesta = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return {"ruta": respuesta.choices[0].message.content}
