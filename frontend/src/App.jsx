@@ -40,7 +40,7 @@ function App() {
       perfil.nivel_educativo &&
       perfil.estado &&
       perfil.intereses.length > 0 &&
-      perfil.meta.trim()
+      perfil.meta
     )
   }
 
